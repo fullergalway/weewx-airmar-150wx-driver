@@ -117,7 +117,7 @@ class Station(object):
         logdbg("open serial port %s" % self.port)
         if "://" in self.port:
            self.serial_port = serial.serial_for_url(self.port,
-                                baudrate=self.baudrate,timeout=args.timeout)
+                                baudrate=self.baudrate,timeout=self.timeout)
         else:
           self.serial_port = serial.Serial(self.port, self.baudrate,
                                          timeout=self.timeout)
