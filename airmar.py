@@ -115,7 +115,11 @@ class Station(object):
 
     def open(self):
         logdbg("open serial port %s" % self.port)
-        self.serial_port = serial.Serial(self.port, self.baudrate,
+        if "://" in self.port:
+           self.serial_port = serial.serial_for_url(self.port,
+                                baudrate=self.baudrate,timeout=args.timeout)
+        else:
+          self.serial_port = serial.Serial(self.port, self.baudrate,
                                          timeout=self.timeout)
 
     def close(self):
