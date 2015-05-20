@@ -146,8 +146,8 @@ class Station(object):
         for d in mess:
             cs_new = cs_new ^ ord(d)
         cs_new = "%2X" % cs_new
-        if cs_new != cs and "0%s" % cs_new != "%s" % cs:
-            loginf("Unexpected checksum error %s, %s" % (cs_new, cs))
+        if cs_new != cs and "0%s" % str(cs_new).strip() != "%s" % cs:
+            loginf("Unexpected checksum error [%s], [%s]" % (cs_new, cs))
         return buf
 
     def get_readings_with_retry(self, max_tries=5, retry_wait=10):
