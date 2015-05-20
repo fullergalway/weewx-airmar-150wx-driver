@@ -146,7 +146,7 @@ class Station(object):
         for d in mess:
             cs_new = cs_new ^ ord(d)
         cs_new = "%2X" % cs_new
-        if cs_new != cs:
+        if cs_new != cs and cs_new != "%2X" % cs:
             loginf("Unexpected checksum error %s, %s" % (cs_new, cs))
         return buf
 
@@ -171,7 +171,7 @@ class Station(object):
             data['value'] = float(buf[idx-2]) * 1.8 + 32
             data['name'] = "windchill_rel"
         except (ValueError):
-            loginf("Wrong data fromat '%s'" % buf[idx-2])
+            loginf("Wrong data format for windchill_rel '%s'" % buf[idx-2])
         return data
     
     def calc_WCHT(self, buf, idx):
@@ -180,7 +180,7 @@ class Station(object):
             data['value'] = float(buf[idx-2]) * 1.8 + 32
             data['name'] = "windchill"
         except (ValueError):
-            loginf("Wrong data fromat '%s'" % buf[idx-2])
+            loginf("Wrong data format for widnchill '%s'" % buf[idx-2])
         return data
     
     def calc_HINX(self, buf, idx):
@@ -189,7 +189,7 @@ class Station(object):
             data['value'] = float(buf[idx-2]) * 1.8 + 32
             data['name'] = "heatindex"
         except (ValueError):
-            loginf("Wrong data fromat '%s'" % buf[idx-2])
+            loginf("Wrong data format for heatindex '%s'" % buf[idx-2])
         return data
     
     def calc_STNP(self, buf, idx):
@@ -198,7 +198,7 @@ class Station(object):
             data['value'] = float(buf[idx-2]) * INHG_PER_BAR
             data['name'] = "pressure"
         except (ValueError):
-            loginf("Wrong data fromat '%s'" % buf[idx-2])
+            loginf("Wrong data format for pressure '%s'" % buf[idx-2])
         return data
     
     def calc_PTCH(self, buf, idx):
@@ -207,7 +207,7 @@ class Station(object):
             data['value'] = float(buf[idx-2])
             data['name'] = "pitch"
         except (ValueError):
-            loginf("Wrong data fromat '%s'" % buf[idx-2])
+            loginf("Wrong data format for ptich '%s'" % buf[idx-2])
         return data
     
     def calc_ROLL(self, buf, idx):
@@ -216,7 +216,7 @@ class Station(object):
             data['value'] = float(buf[idx-2])
             data['name'] = "roll"
         except (ValueError):
-            loginf("Wrong data fromat '%s'" % buf[idx-2])
+            loginf("Wrong data format for roll '%s'" % buf[idx-2])
         return data
 
     def calc_XACC(self, buf, idx):
@@ -225,7 +225,7 @@ class Station(object):
             data['value'] = float(buf[idx-2])
             data['name'] = "x_accel"
         except (ValueError):
-            loginf("Wrong data fromat '%s'" % buf[idx-2])
+            loginf("Wrong data format for x_accel '%s'" % buf[idx-2])
         return data
 
     def calc_YACC(self, buf, idx):
@@ -234,7 +234,7 @@ class Station(object):
             data['value'] = float(buf[idx-2])
             data['name'] = "y_accel"
         except (ValueError):
-            loginf("Wrong data fromat '%s'" % buf[idx-2])
+            loginf("Wrong data format for y_accel '%s'" % buf[idx-2])
         return data
 
     def calc_ZACC(self, buf, idx):
@@ -243,7 +243,7 @@ class Station(object):
             data['value'] = float(buf[idx-2])
             data['name'] = "z_accel"
         except (ValueError):
-            loginf("Wrong data fromat '%s'" % buf[idx-2])
+            loginf("Wrong data format for z_accel '%s'" % buf[idx-2])
         return data
     
     def calc_RRAT(self, buf, idx):
@@ -252,7 +252,7 @@ class Station(object):
             data['value'] = float(buf[idx-2])
             data['name'] = "rollRate"
         except (ValueError):
-            loginf("Wrong data fromat '%s'" % buf[idx-2])
+            loginf("Wrong data format for rollRate '%s'" % buf[idx-2])
         return data
     
     def calc_PRAT(self, buf, idx):
@@ -261,7 +261,7 @@ class Station(object):
             data['value'] = float(buf[idx-2])
             data['name'] = "pitchRate"
         except (ValueError):
-            loginf("Wrong data fromat '%s'" % buf[idx-2])
+            loginf("Wrong data format for pitchRate '%s'" % buf[idx-2])
         return data
     
     def calc_YRAT(self, buf, idx):
@@ -270,7 +270,7 @@ class Station(object):
             data['value'] = float(buf[idx-2])
             data['name'] = "yawRate"
         except (ValueError):
-            loginf("Wrong data fromat '%s'" % buf[idx-2])
+            loginf("Wrong data format for yawRate '%s'" % buf[idx-2])
         return data
     
     def calc_RRTR(self, buf, idx):
@@ -279,7 +279,7 @@ class Station(object):
             data['value'] = float(buf[idx-2])
             data['name'] = "rollRate_raw"
         except (ValueError):
-            loginf("Wrong data fromat '%s'" % buf[idx-2])
+            loginf("Wrong data format for rollRate_raw '%s'" % buf[idx-2])
         return data
     
     def calc_PRTR(self, buf, idx):
@@ -288,7 +288,7 @@ class Station(object):
             data['value'] = float(buf[idx-2])
             data['name'] = "pitchRate_raw"
         except (ValueError):
-            loginf("Wrong data fromat '%s'" % buf[idx-2])
+            loginf("Wrong data format for pitchRate_raw '%s'" % buf[idx-2])
         return data
     
     def calc_YRTR(self, buf, idx):
@@ -297,7 +297,7 @@ class Station(object):
             data['value'] = float(buf[idx-2])
             data['name'] = "yawRate_raw"
         except (ValueError):
-            loginf("Wrong data fromat '%s'" % buf[idx-2])
+            loginf("Wrong data format for yawRate_raw '%s'" % buf[idx-2])
         return data
     
     def calc_PLAT(self, buf, idx):
@@ -306,7 +306,7 @@ class Station(object):
             data['value'] = float(buf[idx-2]) * 1.8 + 32
             data['name'] = "heatingTemp_plate"
         except (ValueError):
-            loginf("Wrong data fromat '%s'" % buf[idx-2])
+            loginf("Wrong data format for heatingTemp_plate '%s'" % buf[idx-2])
         return data
     
     def calc_CAPT(self, buf, idx):
@@ -315,7 +315,7 @@ class Station(object):
             data['value'] = float(buf[idx-2]) * 1.8 + 32
             data['name'] = "heatingTemp_cap"
         except (ValueError):
-            loginf("Wrong data fromat '%s'" % buf[idx-2])
+            loginf("Wrong data format for heatingTemp_cap '%s'" % buf[idx-2])
         return data
     
     def calc_PLAV(self, buf, idx):
@@ -324,7 +324,7 @@ class Station(object):
             data['value'] = float(buf[idx-2])
             data['name'] = "heatingVoltage_pl"
         except (ValueError):
-            loginf("Wrong data fromat '%s'" % buf[idx-2])
+            loginf("Wrong data format for heatingVoltage_pl '%s'" % buf[idx-2])
         return data
     
     def calc_CAPV(self, buf, idx):
@@ -333,7 +333,7 @@ class Station(object):
             data['value'] = float(buf[idx-2])
             data['name'] = "heatingVoltage_cap"
         except (ValueError):
-            loginf("Wrong data fromat '%s'" % buf[idx-2])
+            loginf("Wrong data format for heatingVoltage_cap '%s'" % buf[idx-2])
         return data
     
     def calc_HUMT(self, buf, idx):
@@ -342,7 +342,7 @@ class Station(object):
             data['value'] = float(buf[idx-2]) * 1.8 + 32
             data['name'] = "inTemp"
         except (ValueError):
-            loginf("Wrong data fromat '%s'" % buf[idx-2])
+            loginf("Wrong data format for inTemp '%s'" % buf[idx-2])
         return data
     
     def calc_BRDT(self, buf, idx):
@@ -351,7 +351,7 @@ class Station(object):
             data['value'] = float(buf[idx-2]) * 1.8 + 32
             data['name'] = "mbTemp"
         except (ValueError):
-            loginf("Wrong data fromat '%s'" % buf[idx-2])
+            loginf("Wrong data format for mbTemp '%s'" % buf[idx-2])
         return data
     
     def calc_UPPT(self, buf, idx):
@@ -360,7 +360,7 @@ class Station(object):
             data['value'] = float(buf[idx-2]) * 1.8 + 32
             data['name'] = "upTemp"
         except (ValueError):
-            loginf("Wrong data fromat '%s'" % buf[idx-2])
+            loginf("Wrong data format for upTemp '%s'" % buf[idx-2])
         return data
     
     def calc_BRDV(self, buf, idx):
@@ -369,7 +369,7 @@ class Station(object):
             data['value'] = float(buf[idx-2])
             data['name'] = "supplyVoltage"
         except (ValueError):
-            loginf("Wrong data fromat '%s'" % buf[idx-2])
+            loginf("Wrong data format for supplyVoltage '%s'" % buf[idx-2])
         return data
 
     #@staticmethod
@@ -388,7 +388,7 @@ class Station(object):
                 data['deviation_magn'] = float(buf[2])
                 data['variation_magn'] = float(buf[4])
             except (ValueError):
-                loginf("Wrong data fromat '%s, %s, %s'" % (buf[1], buf[2], buf[4]))
+                loginf("Wrong data format for $HCHDG '%s, %s, %s'" % (buf[1], buf[2], buf[4]))
             if buf[3] == 'E':
                 data['deviation_magn'] *= -1 #?????????????
             if buf[5] == 'E':
@@ -397,7 +397,7 @@ class Station(object):
             try:
                 data['heading_true'] = float(buf[1])
             except (ValueError):
-                loginf("Wrong data fromat '%s'" % buf[1])
+                loginf("Wrong data format for $HCHDT '%s'" % buf[1])
         elif buf[0] == '$WIMDA':
             try:
                 data['altimeter'] = float(buf[1])
@@ -408,14 +408,14 @@ class Station(object):
                 data['windDir_magn_mda'] = float(buf[15])
                 data['windSpeed_mda'] = float(buf[17]) / 1.15077945 #Wind speed, mph
             except (ValueError):
-                loginf("Wrong data fromat '%s, %s, %s, %s, %s, %s, %s'" % (buf[1], buf[5], buf[9], buf[11], buf[13], buf[15], buf[17]))
+                loginf("Wrong data format for $WIMDA '%s, %s, %s, %s, %s, %s, %s'" % (buf[1], buf[5], buf[9], buf[11], buf[13], buf[15], buf[17]))
         elif buf[0] == '$WIMWD':
             try:
                 data['windDir_true_mwd'] = float(buf[1])
                 data['windDir_magn_mwd'] = float(buf[3])
                 data['windSpeed_mwd'] = float(buf[5]) / 1.15077945
             except (ValueError):
-                loginf("Wrong data fromat '%s, %s, %s'" % (buf[1], buf[3], buf[5]))
+                loginf("Wrong data format for $WIMWD '%s, %s, %s'" % (buf[1], buf[3], buf[5]))
         elif buf[0] == '$WIMWV':
             if buf[5] == 'A':
                 if buf[2] == 'R':
@@ -423,31 +423,31 @@ class Station(object):
                         data['windAngle_rel_mwv'] = float(buf[1])
                         data['windSpeed_rel_mwv'] = float(buf[3]) / 1.15077945
                     except (ValueError):
-                        loginf("Wrong data fromat '%s, %s'" % (buf[1], buf[3]))
+                        loginf("Wrong data format for $WIMWV A-R '%s, %s'" % (buf[1], buf[3]))
                 elif buf[2] == 'T':
                     try:
                         data['windAngle_theor_mwv'] = float(buf[1])
                         data['windSpeed_theor_mwv'] = float(buf[3]) / 1.15077945
                     except (ValueError):
-                        loginf("Wrong data fromat '%s, %s'" % (buf[1], buf[3]))
+                        loginf("Wrong data format for $WIMWV A-T '%s, %s'" % (buf[1], buf[3]))
         elif buf[0] == '$TIROT':
             if buf[2] == 'A':
                 try:
                     data['tiRot'] = float(buf[1])
                 except (ValueError):
-                    loginf("Wrong data fromat '%s'" % buf[1])
+                    loginf("Wrong data format for $TIROT '%s'" % buf[1])
         elif buf[0] == '$HCTHS':
             if buf[2] == 'A':
                 try:
                     data['true_north_heading'] = float(buf[1])
                 except (ValueError):
-                    loginf("Wrong data fromat '%s'" % buf[1])
+                    loginf("Wrong data format for $HCTHS '%s'" % buf[1])
         elif buf[0] == '$WIVWR':
             try:
                 data['windAngle_rel_vess'] = float(buf[1])
                 data['windSpeed_rel_vess'] = float(buf[3]) / 1.15077945
             except (ValueError):
-                    loginf("Wrong data fromat '%s, %s'" % (buf[1], buf[3]))
+                    loginf("Wrong data format for $WIVWR '%s, %s'" % (buf[1], buf[3]))
             if buf[2] == 'R': #R = right
                 data['windAngle_rel_vess'] *= -1 #???????????????????
         elif buf[0] == '$WIVWT':
@@ -455,7 +455,7 @@ class Station(object):
                 data['windAngle_true_vess'] = float(buf[1])
                 data['windSpeed_true_vess'] = float(buf[3]) / 1.15077945
             except (ValueError):
-                    loginf("Wrong data fromat '%s, %s'" % (buf[1], buf[3]))
+                    loginf("Wrong data format for $WIVWT '%s, %s'" % (buf[1], buf[3]))
             if buf[2] == 'R': #R = right
                 data['windAngle_true_vess'] *= -1 #???????????????????????
         elif buf[0] == '$YXXDR':
@@ -476,13 +476,13 @@ class Station(object):
                     data['rain_intensity'] = float(buf[10]) * 0.03937007874015748
                     data['peak_rain_intensity'] = float(buf[14]) * 0.03937007874015748
                 except (ValueError):
-                    loginf("Wrong data fromat '%s, %s, %s, %s'" % (buf[2], buf[6], buf[10], buf[14]))
+                    loginf("Wrong data format for $WIXDR RAIN '%s, %s, %s, %s'" % (buf[2], buf[6], buf[10], buf[14]))
             if buf[4] == 'WNDA':
                 try:
                     data['windAngle_unfilt'] = float(buf[2])
                     data['windSpeed_unfilt'] = float(buf[6]) / 1.15077945
                 except (ValueError):
-                    loginf("Wrong data fromat '%s, %s'" % (buf[2], buf[6]))
+                    loginf("Wrong data format for $WIXDR WNDA '%s, %s'" % (buf[2], buf[6]))
         #else: #Processing of other data sentences
         if 'windDir_true_mwd' in data and data['windDir_true_mwd'] is not None:
             data['windDir'] = data['windDir_true_mwd']
