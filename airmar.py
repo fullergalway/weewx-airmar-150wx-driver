@@ -146,7 +146,7 @@ class Station(object):
         for d in mess:
             cs_new = cs_new ^ ord(d)
         cs_new = "%2X" % cs_new
-        if cs_new != cs and "0%s" % cs_new != cs:
+        if cs_new != cs and "0%s" % cs_new != "%s" % cs:
             loginf("Unexpected checksum error %s, %s" % (cs_new, cs))
         return buf
 
@@ -180,7 +180,7 @@ class Station(object):
             data['value'] = float(buf[idx-2]) * 1.8 + 32
             data['name'] = "windchill"
         except (ValueError):
-            loginf("Wrong data format for widnchill '%s'" % buf[idx-2])
+            loginf("Wrong data format for windchill '%s'" % buf[idx-2])
         return data
     
     def calc_HINX(self, buf, idx):
